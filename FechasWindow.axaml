@@ -1,0 +1,33 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="500" d:DesignHeight="350"
+        x:Class="AvaloniaApplication1.FechasWindow"
+        Title="Gestión de calendarios"
+        WindowStartupLocation="CenterOwner"
+        Width="500" Height="350">
+    
+    <StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel Margin="10">
+                <RadioButton GroupName="Modo" Name="RbModoS" Content="Simple" IsChecked="True" Click="RbModoS_OnClick"/>
+                <RadioButton GroupName="Modo" Name="RbModoM" Content="Múltiple" Click="RbModoS_OnClick"/>
+                <Button Name="BtnHoy" Content="Hoy" Click="BtnHoy_OnClick"/>
+            </StackPanel>
+            <Viewbox Stretch="Fill" Width="180">
+                <Calendar Name="Cld1" SelectionMode="SingleDate" SelectedDatesChanged="Cld1_OnSelectedDatesChanged"/>
+            </Viewbox>
+            <StackPanel Margin="10">
+                <Label Margin="5" Content="Fechas seleccionadas:" FontWeight="Bold"/>
+                <ListBox MinHeight="150" Name="LbFechas" Height="30"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Margin="5" Content="Fecha simple seleccionada:" FontWeight="Bold"/>
+            <TextBlock Name="TbFechaSimple" VerticalAlignment="Center"/>
+        </StackPanel>
+        <DatePicker Name="DtPicker1" DayFormat="ddd dd"/>
+        <TimePicker />
+    </StackPanel>
+</Window>

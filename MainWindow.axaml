@@ -1,0 +1,103 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="425" d:DesignHeight="600"
+        x:Class="AvaloniaApplication1.MainWindow"
+        Title="Carga de imágenes"
+        Icon="Assets/icons/favicon.ico"
+        Width="425" Height="600"
+        CanResize="False"
+        Loaded="Control_OnLoaded"
+        Closing="Window_OnClosing">
+    <DockPanel>
+        <Menu DockPanel.Dock = "Top">
+            <MenuItem Header="_Archivo">
+                <MenuItem Header="A_brir" Click="BtnAbrirDirectorio_OnClick"/>
+                <MenuItem Header="_Guardar"/>
+                <Separator />
+                <MenuItem Header="_Salir" Click="BtnSalir_OnClick">
+                    <MenuItem.Icon>
+                        <Image Width="16" Height="16" Source="Assets/icons/exit_icon.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Edición">
+                <MenuItem Header="Cortar" HotKey="Ctrl+X" InputGesture="Ctrl+C">
+                    <MenuItem.Icon>
+                        <Image Width="16" Height="16" Source="Assets/icons/cut_icon.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Copiar" InputGesture="Ctrl+C" HotKey="Ctrl+C">
+                    <MenuItem.Icon>
+                        <Image Width="16" Height="16" Source="Assets/icons/copy_icon.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="Pegar" InputGesture="Ctrl+V" HotKey="Ctrl+V">
+                    <MenuItem.Icon>
+                        <Image Width="16" Height="16" Source="Assets/icons/paste_icon.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <MenuItem Name="MnCalculadora" Header="Calculadora" Click="MnCalculadora_OnClick"/>
+            <MenuItem Name="MnCalendario" Header="Calendario" Click="MnCalendario_OnClick"/>
+            <MenuItem Name="MnEventos" Header="Eventos" Click="MnEventos_OnClick"/>
+
+            <MenuItem Header="Ayuda">
+                <MenuItem Header="Documentación" />
+                <Separator />
+                <MenuItem Name="MnAcercaDe" Header="Acerca De..." Click="MnAcercaDe_OnClick" />
+            </MenuItem>
+        </Menu>
+        
+        <Label Name="LblSuperior" FontSize="12" Content="" DockPanel.Dock="Top" Background="Beige" />
+        <Label Name="LblEstado" Content="Estado" FontSize="12" DockPanel.Dock="Bottom" Background="AliceBlue" />
+        <StackPanel Name="StPanelLeft" Background="Silver" Orientation="Vertical" DockPanel.Dock="Left">
+            <Button HorizontalAlignment="Center" Name="BtnCargarImagen" Content="Cargar IMG" Margin="5" ToolTip.Tip="Cargar una imagen aleatoria" Click="BtnCargarImagen_OnClick"/>
+            <Button Name="BtnAbrirDirectorio" Content="Abrir Carpeta" Margin="10" ToolTip.Tip="Cargar imagen de un directorio seleccionado" Click="BtnAbrirDirectorio_OnClick_New"/>
+            <Button Name="BtnCargarTextBlock" Content="Añadir Text" Margin="10" ToolTip.Tip="Añadir un textblock de forma dinámica" Click="BtnCargarTextBlock_OnClick"/>
+
+            <Button HorizontalAlignment="Center" Name="BtnSalir" Margin="5" ToolTip.Tip="Cerrar la aplicación" Click="BtnSalir_OnClick">
+                <StackPanel Orientation="Horizontal">
+                    <Image Width="16" Height="16" Source="Assets/icons/exit_icon.png" />
+                    <TextBlock VerticalAlignment="Center" Text="Salir" />
+                </StackPanel>
+            </Button>
+            
+            <CheckBox Name="CbZoom" IsChecked="True" Margin="10,0">Zoom</CheckBox>
+            <CheckBox Name="CbRotar" IsChecked="True" Margin="10,0">Rotación</CheckBox>
+            <ListBox Name="LbLista" 
+                     Height="150" Margin="5" 
+                     SelectionMode="Single"
+                     SelectionChanged="LbLista_OnSelectionChanged"/>
+                
+        </StackPanel>
+        <Grid RowDefinitions="*, 0.15*, 0.25*" ShowGridLines="true" Background="Orange">
+            <Border Margin="15" CornerRadius="2" Grid.Row="0" BorderBrush="Black" BorderThickness="1">
+                <Image Name="ImgPersonaje" 
+                       Height="{Binding #SldZoom.Value}" 
+                       MinHeight="25"
+                       MaxHeight="300"
+                       Stretch="Uniform"
+                       ToolTip.Placement="Top"
+                       Source="{x:Null}"
+                       PointerEntered="ImgPersonaje_OnPointerEntered"
+                       PointerExited="ImgPersonaje_OnPointerExited">
+                        <Image.RenderTransform>
+                           <RotateTransform Angle="{Binding #SldRotacion.Value}" />
+                        </Image.RenderTransform>
+                        <ToolTip.Tip>
+                           <StackPanel>
+                               <TextBlock FontSize="16" Text="Esta es la imagen cargada" />
+                               <TextBlock Text="Puedes cambiarla usando el menú o las opciones de botón" />
+                           </StackPanel>
+                       </ToolTip.Tip>
+                </Image>
+            </Border>
+            <TextBlock Grid.Row="1" Margin="20,0" Text="{Binding #SldZoom.Value, StringFormat=Zoom: {0:N1}}" FontSize="14" FontStyle="Oblique"/>
+            <Slider Grid.Row="1" Name="SldZoom" Margin="20,0" IsEnabled="{Binding #CbZoom.IsChecked}" Minimum="{Binding #ImgPersonaje.MinHeight}" Maximum="{Binding #ImgPersonaje.MaxHeight}" Value="300" /> 
+            <TextBlock Grid.Row="2" Margin="20,0" Text="{Binding #SldRotacion.Value, StringFormat=Rotación: {0:N0}}" FontSize="14" FontStyle="Oblique"/>
+            <Slider Grid.Row="2" Name="SldRotacion" Margin="20,0" IsEnabled="{Binding #CbRotar.IsChecked}" Minimum="0" Maximum="360" Value="0" /> 
+        </Grid>
+    </DockPanel>
+</Window>

@@ -1,2 +1,2 @@
 # avalonia_imagen
-Ejermplo desarrollado en clase
+Proyecto Gráfico realizado en clase

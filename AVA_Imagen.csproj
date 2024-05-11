@@ -1,0 +1,65 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+        <ApplicationManifest>app.manifest</ApplicationManifest>
+        <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+        <RootNamespace>AvaloniaApplication1</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Avalonia" Version="11.0.10" />
+        <PackageReference Include="Avalonia.Desktop" Version="11.0.10" />
+        <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.10" />
+        <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.10" />
+        <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.10" />
+        <PackageReference Include="MessageBox.Avalonia" Version="3.1.5.1" />
+    </ItemGroup>
+    <ItemGroup>
+        <AvaloniaResource Include="Assets\**" />
+        <AvaloniaResource Include="bin\Debug\net8.0\Imagenes\img1.jpg" />
+        <AvaloniaResource Include="bin\Debug\net8.0\Imagenes\img2.jpg" />
+        <AvaloniaResource Include="bin\Debug\net8.0\Imagenes\img3.jpg" />
+        <AvaloniaResource Include="bin\Debug\net8.0\Imagenes\img4.jpg" />
+        <AvaloniaResource Include="bin\Debug\net8.0\Imagenes\img5.jpg" />
+        <AvaloniaResource Include="bin\Debug\net8.0\Imagenes\img6.jpg" />
+        <AvaloniaResource Include="bin\Debug\net8.0\Imagenes\img7.jpg" />
+        <AvaloniaResource Include="bin\Debug\net8.0\Imagenes\img8.jpg" />
+        <AvaloniaResource Remove="bin\**" />
+        <AvaloniaResource Remove="obj\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="bin\Debug\net8.0\" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Include="bin\Debug\net8.0\Imagenes\img1.jpg" />
+      <None Include="bin\Debug\net8.0\Imagenes\img2.jpg" />
+      <None Include="bin\Debug\net8.0\Imagenes\img3.jpg" />
+      <None Include="bin\Debug\net8.0\Imagenes\img4.jpg" />
+      <None Include="bin\Debug\net8.0\Imagenes\img5.jpg" />
+      <None Include="bin\Debug\net8.0\Imagenes\img6.jpg" />
+      <None Include="bin\Debug\net8.0\Imagenes\img7.jpg" />
+      <None Include="bin\Debug\net8.0\Imagenes\img8.jpg" />
+      <None Remove="bin\**" />
+      <None Remove="obj\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <AvaloniaXaml Remove="bin\**" />
+      <AvaloniaXaml Remove="obj\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Remove="bin\**" />
+      <Compile Remove="obj\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Remove="bin\**" />
+      <EmbeddedResource Remove="obj\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <AdditionalFiles Remove="bin\**" />
+      <AdditionalFiles Remove="obj\**" />
+    </ItemGroup>
+</Project>

@@ -1,0 +1,30 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="350" d:DesignHeight="425"
+        x:Class="AvaloniaApplication1.AcercaWindow"
+        Title="Acerca De"
+        Width="350"
+        Height="425"
+        CanResize="False"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="NoChrome"
+        ExtendClientAreaTitleBarHeightHint="-1"
+        SystemDecorations="BorderOnly"
+        WindowStartupLocation="CenterOwner">
+    
+    <StackPanel Background="Olive">
+        <Viewbox>
+            <Image Stretch="UniformToFill" Source="Assets/icons/eliseo.png" />
+        </Viewbox>
+        <Border Margin="15" Padding="5" BorderThickness="2" CornerRadius="8" BorderBrush="White">
+            <TextBlock TextAlignment="Center">
+                <Run Text="(2024) E. Moreno" FontSize="12" FontWeight="Bold" />
+                <LineBreak />
+                <Run  Text="Todos los derechos reservados" FontSize="12" FontWeight="Light" />
+            </TextBlock>
+        </Border>
+        <Button HorizontalAlignment="Center" FontWeight="DemiBold" Click="Button_OnClick">OK</Button>
+    </StackPanel>
+</Window>
